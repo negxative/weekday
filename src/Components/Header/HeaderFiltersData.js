@@ -4,7 +4,7 @@ export const getExperienceFilterOptions = () => {
   const experienceArray = _.range(0, 10).map((el) => {
     return { label: el, value: el };
   });
-  return [...experienceArray, { label: ">10 years", value: ">10 years" }];
+  return [...experienceArray, { label: ">10 years", value: ">10" }];
 };
 
 export const getLocationFilterOptions = (

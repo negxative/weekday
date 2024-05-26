@@ -28,10 +28,18 @@ export const useFilterData = () => {
         location.length > 0 && jobLocation
           ? location.includes(jobLocation)
           : true;
-      const matchExperience = !!minExp ? experience <= minExp : true;
-      const matchSalary = !!salary ? salary <= minJdSalary : true;
+      const matchExperience = !!minExp
+        ? experience === ">10"
+          ? minExp >= 10
+          : experience <= minExp
+        : true;
+      const matchSalary = !!salary
+        ? salary === ">100"
+          ? minJdSalary >= 100
+          : minJdSalary >= salary
+        : true;
       const matchCompanyName = !!companyName
-        ? _.includes(companyNameInJD, companyName)
+        ? _.includes(_.lowerCase(companyNameInJD), _.lowerCase(companyName))
         : true;
 
       if (
@@ -45,6 +53,6 @@ export const useFilterData = () => {
     });
     setFilteredArray(tempFilteredArray);
   }, [data, role, experience, companyName, location, salary]);
-
+  console.log(filteredArray);
   return { filteredArray };
 };

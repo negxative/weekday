@@ -36,34 +36,46 @@ const Header = ({ refinedData }) => {
       <SelectDropdown
         placeholder="Experience"
         options={getExperienceFilterOptions()}
-        onChange={(option) => handleExperienceChange(option, dispatch)}
+        onChange={(option, action) =>
+          handleExperienceChange(option, dispatch, action)
+        }
       />
       <SelectDropdown
         placeholder="Work Mode"
         isMulti
         options={getWorkModeOptions()}
-        onChange={(option) => handleWorkModeChange(option, dispatch)}
+        onChange={(option, action) =>
+          handleWorkModeChange(option, dispatch, action)
+        }
       />
       <SelectDropdown
         placeholder="Location"
         isMulti
         options={getLocationFilterOptions(refinedData)}
-        onChange={(option) => handleLocationChange(option, dispatch)}
+        onChange={(option, action) =>
+          handleLocationChange(option, dispatch, action)
+        }
       />
       <SelectDropdown
         placeholder="Role"
         isMulti
         options={getRoleFilterOptions(refinedData)}
-        onChange={(option) => handleRoleChange(option, dispatch)}
+        onChange={(option, action) =>
+          handleRoleChange(option, dispatch, action)
+        }
       />
       <SelectDropdown
         placeholder="Minimum Salary"
         options={getSalaryFilterOptions()}
-        onChange={(option) => handleSalaryChange(option, dispatch)}
+        onChange={(option, action) =>
+          handleSalaryChange(option, dispatch, action)
+        }
       />
       <SearchBox
         placeholder="Search Company Name"
-        onChange={(option) => handleCompanySearch(option, dispatch)}
+        onChange={(option, action) =>
+          handleCompanySearch(option, dispatch, action)
+        }
       />
     </Box>
   );

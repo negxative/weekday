@@ -9,9 +9,10 @@ const JobCardsContainer = ({ data }) => {
     <Container
       sx={{
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         alignItems: "space-start",
         flexWrap: "wrap",
+        gap: 4,
       }}
     >
       {items.map((job, index) => (

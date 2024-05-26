@@ -21,8 +21,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Header = ({ refinedData }) => {
   const dispatch = useDispatch();
-  const filterObject = useSelector((state) => state.filters);
-
   // Rendering header with filter options
   return (
     <Box
@@ -34,6 +32,8 @@ const Header = ({ refinedData }) => {
         gap: "20px",
         padding: 3,
       }}
+      role="banner"
+      aria-label="Filters Section"
     >
       {/* Select dropdown for Experience filter */}
       <SelectDropdown

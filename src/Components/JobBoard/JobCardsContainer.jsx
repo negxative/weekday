@@ -17,6 +17,8 @@ const JobCardsContainer = ({ data }) => {
         flexWrap: "wrap",
         gap: 4,
       }}
+      role="main"
+      aria-label="Job Listings"
     >
       {/* Map through items and render job cards */}
       {items.map((job, index) => (

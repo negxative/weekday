@@ -4,7 +4,10 @@ import { JobCard } from "../JobCard/JobCard";
 import useInfiniteScroll from "../../Hooks/useInfiniteScroll";
 
 const JobCardsContainer = ({ data }) => {
+  // Fetch items and reference for infinite scrolling
   const { items, lastItemRef } = useInfiniteScroll(data, 10, 10);
+
+  // Render job cards container
   return (
     <Container
       sx={{
@@ -15,11 +18,13 @@ const JobCardsContainer = ({ data }) => {
         gap: 4,
       }}
     >
+      {/* Map through items and render job cards */}
       {items.map((job, index) => (
         <JobCard
           key={index}
           job={job}
           index={index}
+          // Set reference for last item for infinite scrolling
           ref={index === items.length - 1 ? lastItemRef : null}
         />
       ))}

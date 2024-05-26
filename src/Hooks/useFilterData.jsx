@@ -3,15 +3,22 @@ import { getSampleJdJSON } from "../Assets/SampleData";
 import { useSelector } from "react-redux";
 import _ from "lodash";
 
+// Get sample job data
 const data = getSampleJdJSON();
-console.log(data);
+
+// Custom hook to filter job data based on filter criteria
 export const useFilterData = () => {
+  // State to store filtered job data
   const [filteredArray, setFilteredArray] = useState([]);
+
+  // Get filter criteria from Redux store
   const { role, experience, companyName, location, salary } = useSelector(
     (state) => state.filters
   );
 
+  // Effect to filter job data when filter criteria change
   useEffect(() => {
+    // Filter the job data based on filter criteria
     const tempFilteredArray = data.filter((jobListing) => {
       const {
         companyName: companyNameInJD,
@@ -21,8 +28,8 @@ export const useFilterData = () => {
         minJdSalary,
       } = jobListing;
 
-      const matchRole =
-        !role || role.length === 0 || (role && role.includes(jobRole));
+      // Check if job listing matches filter criteria
+      const matchRole = !role || role.length === 0 || role.includes(jobRole);
       const matchLocation =
         !location ||
         location.length === 0 ||
@@ -41,6 +48,7 @@ export const useFilterData = () => {
         !companyName ||
         _.includes(_.lowerCase(companyNameInJD), _.lowerCase(companyName));
 
+      // Return true if all filter criteria match
       return (
         matchRole &&
         matchCompanyName &&
@@ -50,8 +58,10 @@ export const useFilterData = () => {
       );
     });
 
+    // Update the filtered job data
     setFilteredArray(tempFilteredArray);
   }, [role, experience, companyName, location, salary]);
 
+  // Return the filtered job data
   return { filteredArray };
 };

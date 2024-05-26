@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Initial state for the filters
 const initialState = {
   experience: -1,
   mode: [],
@@ -9,10 +10,12 @@ const initialState = {
   companyName: "",
 };
 
+// Create a slice for managing filters
 const filtersSlice = createSlice({
-  name: "filtersSlice",
-  initialState,
+  name: "filtersSlice", // Name of the slice
+  initialState, // Initial state for the slice
   reducers: {
+    // Reducer functions to update each filter state
     setExperience: (state, payload) => {
       state.experience = payload.payload;
     },
@@ -34,6 +37,7 @@ const filtersSlice = createSlice({
   },
 });
 
+// Extract action creators and reducer from the slice
 export const {
   setExperience,
   setLocation,

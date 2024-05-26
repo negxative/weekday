@@ -10,7 +10,6 @@ import {
 const valueArrayConstructor = (option) =>
   option.map((curOption) => curOption.value);
 
-// filterChangeHandlers.js
 export const handleExperienceChange = (option, dispatch, action) => {
   // Implement your logic for handling Experience dropdown change here
   if (action === "clear") dispatch(setExperience(-1));

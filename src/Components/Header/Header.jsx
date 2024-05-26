@@ -22,6 +22,8 @@ import { useDispatch, useSelector } from "react-redux";
 const Header = ({ refinedData }) => {
   const dispatch = useDispatch();
   const filterObject = useSelector((state) => state.filters);
+
+  // Rendering header with filter options
   return (
     <Box
       sx={{
@@ -33,6 +35,7 @@ const Header = ({ refinedData }) => {
         padding: 3,
       }}
     >
+      {/* Select dropdown for Experience filter */}
       <SelectDropdown
         placeholder="Experience"
         options={getExperienceFilterOptions()}
@@ -40,6 +43,7 @@ const Header = ({ refinedData }) => {
           handleExperienceChange(option, dispatch, action)
         }
       />
+      {/* Select dropdown for Work Mode filter */}
       <SelectDropdown
         placeholder="Work Mode"
         isMulti
@@ -48,6 +52,7 @@ const Header = ({ refinedData }) => {
           handleWorkModeChange(option, dispatch, action)
         }
       />
+      {/* Select dropdown for Location filter */}
       <SelectDropdown
         placeholder="Location"
         isMulti
@@ -56,6 +61,7 @@ const Header = ({ refinedData }) => {
           handleLocationChange(option, dispatch, action)
         }
       />
+      {/* Select dropdown for Role filter */}
       <SelectDropdown
         placeholder="Role"
         isMulti
@@ -64,6 +70,7 @@ const Header = ({ refinedData }) => {
           handleRoleChange(option, dispatch, action)
         }
       />
+      {/* Select dropdown for Salary filter */}
       <SelectDropdown
         placeholder="Minimum Salary"
         options={getSalaryFilterOptions()}
@@ -71,12 +78,12 @@ const Header = ({ refinedData }) => {
           handleSalaryChange(option, dispatch, action)
         }
       />
+      {/* Search box for filtering by Company Name */}
       <SearchBox
         placeholder="Search Company Name"
-        onChange={(option, action) =>
-          handleCompanySearch(option, dispatch, action)
-        }
+        onChange={(option) => handleCompanySearch(option, dispatch)}
       />
+      {/* Select dropdown for Tech Stack filter */}
       <SelectDropdown placeholder="Tech Stack" options={[]} />
     </Box>
   );

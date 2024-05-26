@@ -1,7 +1,12 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from "react";
 
 const useInfiniteScroll = (data, initialItemsCount, itemsPerPage) => {
   const [items, setItems] = useState(data.slice(0, initialItemsCount));
+
+  useEffect(() => {
+    setItems(data.slice(0, initialItemsCount));
+  }, [data]);
+
   const observer = useRef(null);
 
   const lastItemRef = useCallback((node) => {
@@ -18,7 +23,10 @@ const useInfiniteScroll = (data, initialItemsCount, itemsPerPage) => {
 
   const loadMoreItems = useCallback(() => {
     setItems((prevItems) => {
-      const newItems = data.slice(prevItems.length, prevItems.length + itemsPerPage);
+      const newItems = data.slice(
+        prevItems.length,
+        prevItems.length + itemsPerPage
+      );
       return [...prevItems, ...newItems];
     });
   }, [data, itemsPerPage]);

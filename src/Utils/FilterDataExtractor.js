@@ -1,4 +1,7 @@
-export const dataRefiner = (data) => {
+import { getSampleJdJSON } from "../Assets/SampleData";
+
+export const FilterDataExtractor = () => {
+  const data = getSampleJdJSON();
   const distinctRoleValues = new Set();
   const distinctLocationValues = new Set();
   data.forEach((job) => {
@@ -6,6 +9,5 @@ export const dataRefiner = (data) => {
     distinctRoleValues.add(jobRole);
     distinctLocationValues.add(location);
   });
-  console.log("sets", distinctRoleValues, distinctLocationValues);
   return { distinctRoleValues, distinctLocationValues };
 };

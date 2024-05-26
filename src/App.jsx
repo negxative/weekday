@@ -1,32 +1,18 @@
-import React, { useState } from 'react';
-import './App.css';
-import JobCardsContainer from './Components/JobBoard/JobCardsContainer';
-import { getSampleJdJSON } from './Assets/SampleData'
-import SelectDropdown from './Components/SelectDropdown/SelectDropdown';
-import Header from './Components/Header/Header';
-import { dataRefiner } from './Utils/DataRefiner';
+import React from "react";
+import "./App.css";
+import JobCardsContainer from "./Components/JobBoard/JobCardsContainer";
+import Header from "./Components/Header/Header";
+import { FilterDataExtractor } from "./Utils/FilterDataExtractor";
+import { useFilterData } from "./Hooks/useFilterData";
 
-
-const dummyData = [
-  { value: 'engineer', label: 'Engineer' },
-  { value: 'designer', label: 'Designer' },
-  { value: 'manager', label: 'Manager' },
-  { value: 'developer', label: 'Developer' }
-];
+const extractedData = FilterDataExtractor();
 
 function App() {
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
-  const handleSelectChange = (selected) => {
-    setSelectedOptions(selected);
-  };
-  
-  const data=getSampleJdJSON();
-  const refinedData=dataRefiner(data);
+  const { filteredArray: filteredData = [] } = useFilterData();
   return (
     <>
-      <Header refinedData={refinedData} />
-      <JobCardsContainer data={data} />
+      <Header refinedData={extractedData} />
+      <JobCardsContainer data={filteredData} />
     </>
   );
 }

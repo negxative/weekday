@@ -12,6 +12,7 @@ const SelectDropdown = ({ options, isMulti, onChange, value, placeholder }) => {
       placeholder={placeholder} // Placeholder text for the dropdown
       isClearable // Allow clearing the selection
       style={{ minWidth: "300px" }} // Custom styles to set minimum width
+      aria-label={`${placeholder} dropdown`}
     />
   );
 };

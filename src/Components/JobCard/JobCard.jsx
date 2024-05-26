@@ -72,6 +72,9 @@ const JobCard = forwardRef(({ job, index }, ref) => {
       ref={ref}
       id={jdUid}
       className="jobcard-wrapper"
+      role="region"
+      role-description="Job Card"
+      aria-label={`${companyName}, ${jobRole}, ${location}`}
     >
       <CardContent
         sx={{

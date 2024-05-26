@@ -4,7 +4,7 @@ export const getExperienceFilterOptions = () => {
   const experienceArray = _.range(0, 10).map((el) => {
     return { label: el, value: el };
   });
-  return [...experienceArray, { label: ">10 years", value: ">10" }];
+  return [...experienceArray, { label: ">=10 years", value: ">10" }];
 };
 
 export const getLocationFilterOptions = (
@@ -63,5 +63,5 @@ export const getSalaryFilterOptions = () => {
   const experienceArray = _.range(0, 100, 10).map((el) => {
     return { label: el, value: el };
   });
-  return [...experienceArray, { label: ">100 ", value: ">100" }];
+  return [...experienceArray, { label: ">=100 ", value: ">100" }];
 };

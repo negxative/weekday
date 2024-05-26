@@ -53,6 +53,5 @@ export const useFilterData = () => {
     });
     setFilteredArray(tempFilteredArray);
   }, [data, role, experience, companyName, location, salary]);
-  console.log(filteredArray);
   return { filteredArray };
 };

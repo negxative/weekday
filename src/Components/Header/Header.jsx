@@ -77,6 +77,7 @@ const Header = ({ refinedData }) => {
           handleCompanySearch(option, dispatch, action)
         }
       />
+      <SelectDropdown placeholder="Tech Stack" options={[]} />
     </Box>
   );
 };

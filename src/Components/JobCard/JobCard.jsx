@@ -12,15 +12,6 @@ import {
 import fallbackLogo from "../../Assets/FallbackLogo.png";
 import "./JobCard.css";
 
-const fakeJob = {
-  title: "Backend Engineer",
-  company: "fampay",
-  companyLogo: fallbackLogo,
-  location: "Bangalore",
-  description:
-    "FamPay is building India's first neo-bank exclusively for teens. FamPay helps teens make their own online and offline payments through UPI, FamPay App and FamCard. Our aim is to make banking cool for teens and to help them learn the value of money, savings and spending wisely.",
-};
-
 const JobCard = forwardRef(({ job, index }, ref) => {
   const {
     companyName,
@@ -34,9 +25,8 @@ const JobCard = forwardRef(({ job, index }, ref) => {
     maxJdSalary,
     minExp,
     minJdSalary,
-    salaryCurrencyCode
   } = job;
-  
+
   const [isOverflowing, setIsOverflowing] = useState(false);
   const descriptionRef = useRef(null);
 
@@ -48,23 +38,25 @@ const JobCard = forwardRef(({ job, index }, ref) => {
       setIsOverflowing(isOverflowingDiv);
     }
   }, [job]);
-  
-  const getEstimatedsSalary=()=>{
-    if(!minJdSalary && !maxJdSalary) return "Not Disclosed";
-    let salaryContent="";
-    if(minJdSalary && maxJdSalary) salaryContent= `$ ${minJdSalary} - ${maxJdSalary}`;
-    else if(minJdSalary || maxJdSalary) salaryContent= `$ ${minJdSalary || maxJdSalary}`;
-    return `${salaryContent} LPA ✅`
-  }
 
-  const getMinimumExperience=()=>{
-    if(!minExp && !maxExp) return "0+";
-    let experience="";
-    if(minExp && maxExp) experience= `${minExp} - ${maxExp}`;
-    else if(minExp || maxExp) experience= `${minExp || maxExp}`;
+  const getEstimatedsSalary = () => {
+    if (!minJdSalary && !maxJdSalary) return "Not Disclosed";
+    let salaryContent = "";
+    if (minJdSalary && maxJdSalary)
+      salaryContent = `$ ${minJdSalary} - ${maxJdSalary}`;
+    else if (minJdSalary || maxJdSalary)
+      salaryContent = `$ ${minJdSalary || maxJdSalary}`;
+    return `${salaryContent} LPA ✅`;
+  };
 
-    return experience
-  }
+  const getMinimumExperience = () => {
+    if (!minExp && !maxExp) return "0+";
+    let experience = "";
+    if (minExp && maxExp) experience = `${minExp} - ${maxExp}`;
+    else if (minExp || maxExp) experience = `${minExp || maxExp}`;
+
+    return experience;
+  };
 
   return (
     <Card
@@ -109,25 +101,14 @@ const JobCard = forwardRef(({ job, index }, ref) => {
         <Typography variant="body2">
           Estimated Salary: {getEstimatedsSalary()}
         </Typography>
-        <Box
-          className="description-container"
-          ref={descriptionRef}
-        >
+        <Box className="description-container" ref={descriptionRef}>
           <Box className="gradient-overlay" />
           <Typography variant="body1" fontWeight="600">
             About Company:
           </Typography>
           <Typography variant="body2">About Us:</Typography>
           <Typography variant="body1">{jobDetailsFromCompany}</Typography>
-          {isOverflowing && (
-            <Button
-              size="small"
-              className="view-job-button"
-              onClick={()=>{window.open(jdLink)}}
-            >
-              <b>View Job</b>
-            </Button>
-          )}
+
           <Typography variant="body1" fontWeight="600">
             Founder/Recruiter Profiles:
             <br />
@@ -140,12 +121,15 @@ const JobCard = forwardRef(({ job, index }, ref) => {
           </Typography>
 
           <Typography variant="body2">About Role:</Typography>
-          <Typography variant="body1">{fakeJob.description}</Typography>
+          <Typography variant="body1">{jobDetailsFromCompany}</Typography>
           {isOverflowing && (
             <Button
               size="small"
               className="view-job-button"
-              onClick={() => setShowFullContent(true)}
+              onClick={() => {
+                console.log("jd link", jdLink);
+                window.open(jdLink);
+              }}
             >
               <b>View Job</b>
             </Button>
@@ -154,28 +138,18 @@ const JobCard = forwardRef(({ job, index }, ref) => {
         <Typography variant="body2" color="text.secondary">
           <strong>Minimum Experience</strong>
           <br />
-          <span className="experience">{getMinimumExperience() +  " years"}</span>
+          <span className="experience">
+            {getMinimumExperience() + " years"}
+          </span>
         </Typography>
-        <Button
-          className="easy-apply-button"
-        >
+        <Button className="easy-apply-button">
           <Typography variant="body1" fontSize={"14px"}>
             ⚡ Easy Apply
           </Typography>
         </Button>
-        <Button
-          className="unlock-referral-button"
-        >
-          <Avatar
-            src={fallbackLogo}
-            alt="user avatar"
-            className="avatar"
-          />
-          <Avatar
-            src={fallbackLogo}
-            alt="user avatar"
-            className="avatar"
-          />
+        <Button className="unlock-referral-button">
+          <Avatar src={fallbackLogo} alt="user avatar" className="avatar" />
+          <Avatar src={fallbackLogo} alt="user avatar" className="avatar" />
           Unlock Refferal Asks
         </Button>
       </CardContent>

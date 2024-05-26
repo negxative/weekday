@@ -22,6 +22,7 @@ const SearchBox = ({ placeholder, onChange, debounceDelay = 300 }) => {
       onChange={handleChange}
       variant="outlined"
       size="small"
+      color="success"
     />
   );
 };

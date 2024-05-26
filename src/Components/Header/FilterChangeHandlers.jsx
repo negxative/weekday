@@ -13,8 +13,8 @@ const valueArrayConstructor = (option) =>
 // filterChangeHandlers.js
 export const handleExperienceChange = (option, dispatch, action) => {
   // Implement your logic for handling Experience dropdown change here
-  if (action === "clear") dispatch(setExperience(0));
-  else dispatch(setExperience(option?.value ? option.value : 0));
+  if (action === "clear") dispatch(setExperience(-1));
+  else dispatch(setExperience(option?.value ? option.value : -1));
 };
 
 export const handleWorkModeChange = (option, dispatch, action) => {
@@ -40,7 +40,7 @@ export const handleRoleChange = (option, dispatch, action) => {
 
 export const handleSalaryChange = (option, dispatch, action) => {
   // Implement your logic for handling Salary dropdown change here
-  if (action === "clear") dispatch(setSalary(0));
+  if (action === "clear") dispatch(setSalary(-1));
   else dispatch(setSalary(option?.value));
 };
 

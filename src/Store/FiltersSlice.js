@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  experience: 0,
+  experience: -1,
   mode: [],
   location: [],
   role: [],
-  salary: 0,
+  salary: -1,
   companyName: "",
 };
 

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import _ from "lodash";
 
 const data = getSampleJdJSON();
-
+console.log(data);
 export const useFilterData = () => {
   const [filteredArray, setFilteredArray] = useState([]);
   const { role, experience, companyName, location, salary } = useSelector(
@@ -12,8 +12,7 @@ export const useFilterData = () => {
   );
 
   useEffect(() => {
-    const tempFilteredArray = [];
-    data.forEach((jobListing) => {
+    const tempFilteredArray = data.filter((jobListing) => {
       const {
         companyName: companyNameInJD,
         jobRole,
@@ -23,35 +22,36 @@ export const useFilterData = () => {
       } = jobListing;
 
       const matchRole =
-        role.length > 0 && jobRole ? role.includes(jobRole) : true;
+        !role || role.length === 0 || (role && role.includes(jobRole));
       const matchLocation =
-        location.length > 0 && jobLocation
-          ? location.includes(jobLocation)
-          : true;
-      const matchExperience = !!minExp
-        ? experience === ">10"
-          ? minExp >= 10
-          : experience <= minExp
-        : true;
-      const matchSalary = !!salary
-        ? salary === ">100"
-          ? minJdSalary >= 100
-          : minJdSalary >= salary
-        : true;
-      const matchCompanyName = !!companyName
-        ? _.includes(_.lowerCase(companyNameInJD), _.lowerCase(companyName))
-        : true;
+        !location ||
+        location.length === 0 ||
+        (jobLocation && location.includes(jobLocation));
+      const matchExperience =
+        experience == null ||
+        experience === -1 ||
+        (minExp &&
+          (experience === ">10" ? minExp >= 10 : experience <= minExp));
+      const matchSalary =
+        salary == null ||
+        salary === -1 ||
+        (minJdSalary &&
+          (salary === ">100" ? minJdSalary >= 100 : minJdSalary >= salary));
+      const matchCompanyName =
+        !companyName ||
+        _.includes(_.lowerCase(companyNameInJD), _.lowerCase(companyName));
 
-      if (
+      return (
         matchRole &&
         matchCompanyName &&
         matchSalary &&
         matchLocation &&
         matchExperience
-      )
-        tempFilteredArray.push(jobListing);
+      );
     });
+
     setFilteredArray(tempFilteredArray);
-  }, [data, role, experience, companyName, location, salary]);
+  }, [role, experience, companyName, location, salary]);
+
   return { filteredArray };
 };
